@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-planets',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanetsComponent implements OnInit {
 
-  constructor() { }
+  planet: object;
+  name: string;
+
+  constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((param: Params) => {
+      // this.name = param.get('name');
+      this.planet = this.planetsList.getPlanetByName(param.get('name'))
+      // this.planetsList.getPlanetByName('aaa');
+      // console.log(this.name);
+      console.log(this.planet);
+    });
   }
 
 }

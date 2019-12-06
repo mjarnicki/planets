@@ -14,6 +14,12 @@ export class HttpService {
   filteredPlanetList = [];
   planetCount = 1;
 
+  getPlanetByName(name: string) {
+    console.log('zwracam listę planet');
+    console.log(this.planetList);
+    return this.planetList.find(e => e.name === name);
+  }
+
   async sendAllPosts(): Promise<any> {
     const index = await this.getNumberOfRequests();
     const planetList = await this.concatPosts(index);

@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpService.sendAllPosts().then((result) => {
+      console.log(result);
       this.filteredPlanetList = result;
       this.planetList = result;
       this.planetCount = result.length;

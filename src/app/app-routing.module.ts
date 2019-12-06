@@ -11,19 +11,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'planet',
+    path: ':name',
     component: PlanetsComponent,
-    children: [
-      {
-        path: ':name',
-        component: PlanetDetailsComponent
-      }
-    ]
   },
-  // {
-  //   path: '**',
-  //   component: PageNotFoundComponent
-  // }
 ];
 
 @NgModule({
