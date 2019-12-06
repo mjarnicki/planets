@@ -1,0 +1,4 @@
+Wybierz długość listy:
+<select (change)="checkValue($event.target.value)">
+  <option *ngFor="let item of paginationList" value="{{item}}">{{item}}</option>
+</select>
