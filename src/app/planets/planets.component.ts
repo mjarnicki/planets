@@ -14,19 +14,26 @@ export class PlanetsComponent implements OnInit {
 
   constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
 
+  showPlanetDetails() {
+    this.route.paramMap.subscribe((param: Params) => {
+      this.planet = this.planetsList.getPlanetByName(param.get('name'));
+    });
+  }
+
   ngOnInit() {
-    // if (this.planet. > 0) {
-      console.log('jednak poszło');
-      this.route.paramMap.subscribe((param: Params) => {
-        console.log(param);
-        this.planet = this.planetsList.getPlanetByName(param.get('name'));
+    if (this.planetsList.planetList.length > 0) {
+      // this.planetsList.showHide();
+      this.showPlanetDetails();
+    } else {
+      // this.planetsList.showHide();
+      this.planetsList.sendAllPosts().then((result) => {
+        this.showPlanetDetails();
       });
-      this.planetsList.showHide();
-    // }
+    }
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
-  ngOnDestroy(): void {
-    this.planetsList.showHide();
-  }
+  // ngOnDestroy(): void {
+  //   this.planetsList.showHide();
+  // }
 }

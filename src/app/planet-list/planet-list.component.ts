@@ -33,7 +33,7 @@ export class PlanetListComponent implements OnInit {
     this.currentPageNumber = 1;
   }
 
-  filterListOfPlanets(searchingString){
+  filterListOfPlanets(searchingString) {
     this.filteredPlanetList = this.planetList.filter((planet) => {
       return planet.name.toLowerCase().includes(searchingString.toLowerCase());
     });
@@ -41,12 +41,18 @@ export class PlanetListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.httpService.sendAllPosts().then((result) => {
-      console.log(result);
-      this.filteredPlanetList = result;
-      this.planetList = result;
-      this.planetCount = result.length;
-    });
+    if (this.httpService.planetList.length === 0) {
+      this.httpService.sendAllPosts().then((result) => {
+        console.log(result);
+        this.filteredPlanetList = this.httpService.filteredPlanetList;
+        this.planetList = this.httpService.planetList;
+        this.planetCount = this.httpService.planetCount;
+      });
+    } else {
+        this.filteredPlanetList = this.httpService.filteredPlanetList;
+        this.planetList = this.httpService.planetList;
+        this.planetCount = this.httpService.planetCount;
+    }
   }
 
 }

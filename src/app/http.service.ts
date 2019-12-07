@@ -9,21 +9,11 @@ import { Observable, Subject } from 'rxjs';
 export class HttpService {
 
   planetList = [];
+  filteredPlanetList = [];
   planetCount = 1;
   planetsListDisplay = new Subject<boolean>();
-  hideShowVar = false;
 
   constructor(private http: HttpClient) { }
-
-   showHide() {
-    this.hideShowVar = !this.hideShowVar;
-    this.planetsListDisplay.next(this.hideShowVar);
-   }
-
-  showHidePlanetsList(): Observable<boolean> {
-    return this.planetsListDisplay.asObservable();
-  }
-
 
   getPlanetByName(name: string) {
     if (this.planetList.length > 0){
@@ -35,6 +25,7 @@ export class HttpService {
   async sendAllPosts(): Promise<any> {
     const index = await this.getNumberOfRequests();
     const planetList = await this.concatPosts(index);
+    this.filteredPlanetList = planetList;
     return planetList;
   }
 

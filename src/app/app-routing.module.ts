@@ -6,8 +6,7 @@ import { PlanetListComponent } from './planet-list/planet-list.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
+    component: PlanetListComponent,
   },
   {
     path: ':name',
