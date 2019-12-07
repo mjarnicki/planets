@@ -15,13 +15,18 @@ export class PlanetsComponent implements OnInit {
   constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((param: Params) => {
-      // this.name = param.get('name');
-      this.planet = this.planetsList.getPlanetByName(param.get('name'))
-      // this.planetsList.getPlanetByName('aaa');
-      // console.log(this.name);
-      console.log(this.planet);
-    });
+    // if (this.planet. > 0) {
+      console.log('jednak poszło');
+      this.route.paramMap.subscribe((param: Params) => {
+        console.log(param);
+        this.planet = this.planetsList.getPlanetByName(param.get('name'));
+      });
+      this.planetsList.showHide();
+    // }
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    this.planetsList.showHide();
+  }
 }

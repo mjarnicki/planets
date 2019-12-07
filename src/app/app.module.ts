@@ -13,7 +13,7 @@ import { PlanetsComponent } from './planets/planets.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DataBaseService } from './data-base.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PlanetDetailsComponent } from './planets/planet-details/planet-details.component';
+import { PlanetListComponent } from './planet-list/planet-list.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { PlanetDetailsComponent } from './planets/planet-details/planet-details.
     PaginationLengthComponent,
     PlanetsComponent,
     PageNotFoundComponent,
-    PlanetDetailsComponent,
+    PlanetListComponent,
   ],
   imports: [
     BrowserModule,

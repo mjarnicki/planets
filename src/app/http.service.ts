@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -8,16 +8,28 @@ import { Observable } from 'rxjs';
 })
 export class HttpService {
 
+  planetList = [];
+  planetCount = 1;
+  planetsListDisplay = new Subject<boolean>();
+  hideShowVar = false;
+
   constructor(private http: HttpClient) { }
 
-  planetList = [];
-  filteredPlanetList = [];
-  planetCount = 1;
+   showHide() {
+    this.hideShowVar = !this.hideShowVar;
+    this.planetsListDisplay.next(this.hideShowVar);
+   }
+
+  showHidePlanetsList(): Observable<boolean> {
+    return this.planetsListDisplay.asObservable();
+  }
+
 
   getPlanetByName(name: string) {
-    console.log('zwracam listę planet');
-    console.log(this.planetList);
-    return this.planetList.find(e => e.name === name);
+    if (this.planetList.length > 0){
+      return this.planetList.find(e => e.name.toLowerCase().replace(' ', '-') === name);
+    } else {
+    }
   }
 
   async sendAllPosts(): Promise<any> {

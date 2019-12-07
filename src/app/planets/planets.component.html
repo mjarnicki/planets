@@ -1,8 +1,11 @@
 <h2>Szczegóły planety!!!</h2>
 
-Nazwa planety: {{planet.name}}
-<br>
-czas trwania doby: {{planet.rotation_period}}
+<ng-container *ngIf="planet">
 
+  Nazwa planety: {{planet.name}} -- {{planet.name.length}}
+  <br>
+  czas trwania doby: {{planet.rotation_period}}
 
-<a href="../">Wróć!</a>
+</ng-container>
+
+<a routerLink="/">Wróć!</a>

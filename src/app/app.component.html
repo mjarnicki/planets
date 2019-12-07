@@ -1,30 +1,4 @@
-<app-filter (setValue)="filterValue($event)"></app-filter>
-<br>
-<br>
-<app-pagination-length (currentPagination)="setPaginationLength($event)"></app-pagination-length>
-<br>
-<br>
-<!-- Ilość planet spełniających kryteria: {{filteredPlanetList.length}} -->
-<ul>
-  <ng-container *ngFor="let planet of filteredPlanetList; let index = index">
-    <li *ngIf="(index + 1 > (currentPageNumber - 1) * (itemsCount) && index + 1 <= (currentPageNumber) * (itemsCount))">
-      <!-- <a routerLink="/{{planet.name | lowercase}}"> -->
-      <a [routerLink]="[planet.name]">
-        {{planet.name}}
-      </a>
-    </li>
-  </ng-container>
-</ul>
 
-<app-pagination
-[setPagination]="{
-  'itemsCount': (planetCount),
-  'pageSize': (itemsCount)
-}"
-[resetPageNumber]="(currentPageNumber)"
-(goToPage)="paginationValue($event)"
->
-</app-pagination>
-
+<app-planet-list [hidden]="showPlanetsList"></app-planet-list>
 
 <router-outlet></router-outlet>
