@@ -9,7 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class PlanetsComponent implements OnInit {
 
-  planet: object;
+  planet: SinglePlanet;
   name: string;
 
   constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
@@ -22,18 +22,28 @@ export class PlanetsComponent implements OnInit {
 
   ngOnInit() {
     if (this.planetsList.planetList.length > 0) {
-      // this.planetsList.showHide();
       this.showPlanetDetails();
     } else {
-      // this.planetsList.showHide();
       this.planetsList.sendAllPosts().then((result) => {
         this.showPlanetDetails();
       });
     }
   }
+}
 
-  // tslint:disable-next-line: use-lifecycle-interface
-  // ngOnDestroy(): void {
-  //   this.planetsList.showHide();
-  // }
+export interface SinglePlanet {
+  climate: string;
+  created: string;
+  diameter: string;
+  edited: string;
+  films: string;
+  gravity: string;
+  name: string;
+  orbital_period: string;
+  population: string;
+  residents: string;
+  rotation_period: string;
+  surface_water: string;
+  terrain: string;
+  url: string;
 }

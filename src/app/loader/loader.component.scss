@@ -1,10 +1,10 @@
-.planet-list{
-  &__filter-container{
+.loader{
+  &__container{
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  &__filter{
-    margin: 1rem;
+  &__animation{
+    width: 25%;
   }
 }

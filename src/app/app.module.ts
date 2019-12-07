@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DataBaseService } from './data-base.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PlanetListComponent } from './planet-list/planet-list.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { PlanetListComponent } from './planet-list/planet-list.component';
     PlanetsComponent,
     PageNotFoundComponent,
     PlanetListComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

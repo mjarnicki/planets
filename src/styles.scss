@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  background-color: black;
+  background-image: url('../src/assets/img/sky-background.jpg');
+  background-size: cover;
+  color: white;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+h1{
+  font-family: "Star-jedi";
+}
+.main{
+  &__header{
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+  }
+}
