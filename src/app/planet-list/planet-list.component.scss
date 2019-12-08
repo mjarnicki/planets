@@ -1,10 +1,68 @@
 .planet-list{
   &__filter-container{
     display: flex;
+    justify-content: center;
+  }
+  &__filter{
+    display: flex;
+    width: 375px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__single-filter{
+    margin: 1rem;
+  }
+  &__list-container{
+    display: flex;
     flex-direction: column;
     align-items: center;
   }
-  &__filter{
-    margin: 1rem;
+  &__list{
+    padding: 0 5px ;
   }
+  &__single-planet{
+    list-style-type: none;
+    a{
+      width: 140px;
+      margin-bottom: 5px;
+      display: inline-block;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 -1px 0px rgba(255,255,255,0.1) inset;
+      background: rgba(0,0,0,0.4);
+      padding: 10px 15px;
+      text-decoration: none;
+      &:hover{
+        background: rgba(0,0,0,0.6);
+      }
+    }
+  }
+  &__pagination{
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+.col-1{
+  column-count: 1;
+  max-width: 375px;
+  padding: 0;
+  text-align: center;
+}
+.col-2{
+  column-count: 2;
+  max-width: 375px;
+  padding: 0;
+  text-align: center;
+}
+.col-5{
+  column-count: 5;
+  max-width: 1200px;
+  padding: 0;
+  text-align: center;
+  @media (max-width: 580px){
+    column-count: 3;
+    max-width: 100%;
+    padding: 0 15px;
+   }
 }

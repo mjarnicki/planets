@@ -14,9 +14,13 @@ export class PlanetListComponent implements OnInit {
   stringToFilter = '';
   currentPageNumber = 1;
   itemsCount: number;
+  showLoader = false;
+  showContent = true;
+  columnNumber = 'col-1';
 
 
-  constructor( private httpService: HttpService) {  }
+  constructor( private httpService: HttpService) {
+    }
 
   filterValue(searchingString) {
     this.stringToFilter = searchingString;
@@ -24,13 +28,21 @@ export class PlanetListComponent implements OnInit {
     this.currentPageNumber = 1;
   }
 
-  paginationValue(event) {
+  paginationValue(event: number) {
     this.currentPageNumber = event;
   }
 
   setPaginationLength(event) {
     this.itemsCount = event;
     this.currentPageNumber = 1;
+    console.log(event);
+    this.changeColumnNumber(event);
+  }
+
+  changeColumnNumber(event: string) {
+    if (event === '5') { this.columnNumber = 'col-1'; }
+    if (event === '10') { this.columnNumber = 'col-2'; }
+    if (event === '25' || event === '100') { this.columnNumber = 'col-5'; }
   }
 
   filterListOfPlanets(searchingString) {
@@ -40,18 +52,22 @@ export class PlanetListComponent implements OnInit {
     this.planetCount = this.filteredPlanetList.length;
   }
 
+  loadData(): void {
+    this.filteredPlanetList = this.httpService.filteredPlanetList;
+    this.planetList = this.httpService.planetList;
+    this.planetCount = this.httpService.planetCount;
+    this.showLoader = true;
+    this.showContent = false;
+    console.log(this.planetList);
+  }
+
   ngOnInit(): void {
     if (this.httpService.planetList.length === 0) {
-      this.httpService.sendAllPosts().then((result) => {
-        console.log(result);
-        this.filteredPlanetList = this.httpService.filteredPlanetList;
-        this.planetList = this.httpService.planetList;
-        this.planetCount = this.httpService.planetCount;
+      this.httpService.sendAllPosts().then(() => {
+        this.loadData();
       });
     } else {
-        this.filteredPlanetList = this.httpService.filteredPlanetList;
-        this.planetList = this.httpService.planetList;
-        this.planetCount = this.httpService.planetCount;
+      this.loadData();
     }
   }
 

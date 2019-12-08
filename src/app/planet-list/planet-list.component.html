@@ -1,28 +1,45 @@
-<nav>
-  <div class="container planet-list__filter-container">
-    <app-filter (setValue)="filterValue($event)" class="planet-list__filter"></app-filter>
-    <app-pagination-length (currentPagination)="setPaginationLength($event)"></app-pagination-length>
+<nav class="planet-list__filter-container">
+  <div class="planet-list__filter">
+    <app-filter (setValue)="filterValue($event)" class="planet-list__single-filter"></app-filter>
+    <app-pagination-length (currentPagination)="setPaginationLength($event)" class="planet-list__single-filter"></app-pagination-length>
+    <ng-container  *ngIf="filteredPlanetList.length > 1; then morePlanets; else onePlanet">
+    </ng-container>
   </div>
 </nav>
-Ilość planet spełniających kryteria: {{filteredPlanetList.length}}
-<main>
-  <ul>
-    <ng-container *ngFor="let planet of filteredPlanetList; let index = index">
-      <li *ngIf="(index + 1 > (currentPageNumber - 1) * (itemsCount) && index + 1 <= (currentPageNumber) * (itemsCount))">
-        <a [routerLink]="[planet.name.replace(' ', '-') | lowercase]">
-          {{planet.name}}
-        </a>
-      </li>
-    </ng-container>
-  </ul>
-</main>
+<div [hidden]="showContent" class="planet-list__list-container">
+  <main>
+    <ul class='col-1' [className]='columnNumber'>
+      <ng-container *ngFor="let planet of filteredPlanetList; let index = index">
+        <li class="planet-list__single-planet" *ngIf="(index + 1 > (currentPageNumber - 1) * (itemsCount) && index + 1 <= (currentPageNumber) * (itemsCount))">
+          <a [routerLink]="[planet.name.replace(' ', '-') | lowercase]">
+            {{planet.name}}
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </main>
+  <app-pagination
+    class="planet-list__pagination"
+    [setPagination]="{
+      'itemsCount': (planetCount),
+      'pageSize': (itemsCount)
+    }"
+    [resetPageNumber]="(currentPageNumber)"
+    (goToPage)="paginationValue($event)"
+    >
+  </app-pagination>
+</div>
+<app-loader [hidden]="showLoader"></app-loader>
 
-<app-pagination
-[setPagination]="{
-  'itemsCount': (planetCount),
-  'pageSize': (itemsCount)
-}"
-[resetPageNumber]="(currentPageNumber)"
-(goToPage)="paginationValue($event)"
->
-</app-pagination>
+<ng-template #onePlanet>
+  <p [hidden]="showContent" class="m-3">
+    {{filteredPlanetList.length}} planet mach search criteria.
+  </p>
+</ng-template>
+
+<ng-template #morePlanets>
+  <p [hidden]="showContent" class="m-3">
+    {{filteredPlanetList.length}} planets mach search criteria.
+  </p>
+</ng-template>
+

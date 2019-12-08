@@ -10,6 +10,14 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-y: scroll;
+  min-height: 100vh;
+  app-root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 h1{
   font-family: "Star-jedi";
@@ -19,5 +27,9 @@ h1{
     text-align: center;
     padding: 1rem;
     margin: 0;
+  }
+  &__footer{
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
   }
 }

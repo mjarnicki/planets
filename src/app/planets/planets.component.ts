@@ -11,12 +11,16 @@ export class PlanetsComponent implements OnInit {
 
   planet: SinglePlanet;
   name: string;
+  showLoader = false;
+  showContent = true;
 
   constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
 
   showPlanetDetails() {
     this.route.paramMap.subscribe((param: Params) => {
       this.planet = this.planetsList.getPlanetByName(param.get('name'));
+      this.showLoader = true;
+      this.showContent = false;
     });
   }
 

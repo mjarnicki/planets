@@ -1,3 +1,22 @@
-.active{
-  font-weight: 900;
+.pagination{
+  &__item{
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 -1px 0px rgba(255,255,255,0.1) inset;
+    background: rgba(0,0,0,0.4);
+    padding: 5px;
+    width: 34px;
+    text-decoration: none;
+    &:hover{
+      background: rgba(0,0,0,0.6);
+    }
+    &--active{
+      background: rgba(0,0,0,0.8);
+      font-weight: 900;
+    }
+  }
 }

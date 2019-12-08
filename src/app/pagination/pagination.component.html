@@ -1,4 +1,5 @@
 <span
+  class="pagination__item"
   *ngIf="currentPage !== 1"
   (click)="setPage(currentPage - 1)"
 >
@@ -6,14 +7,16 @@
 </span>
 
 <span
+  class="pagination__item"
   *ngFor="let page of pagesArray; let index = index"
-  [ngClass]="{ 'active': currentPage === index + 1 }"
+  [ngClass]="{ 'pagination__item--active': currentPage === index + 1 }"
   (click)="setPage(index + 1)"
 >
   {{ index + 1 }}
 </span>
 
 <span
+  class="pagination__item"
   *ngIf="currentPage !== pagesArray.length"
   (click)="setPage(currentPage + 1)"
 >
