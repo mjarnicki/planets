@@ -26,6 +26,7 @@ export class HttpService {
     const index = await this.getNumberOfRequests();
     const planetList = await this.concatPosts(index);
     this.filteredPlanetList = planetList;
+    console.log(this.filteredPlanetList);
     return planetList;
   }
 

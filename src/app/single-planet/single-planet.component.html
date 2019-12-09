@@ -1,0 +1,58 @@
+<div class="container single-planet__container" [hidden] = "showContent" *ngIf="planet">
+  <h2 class="single-planet__name">{{planet.name}}</h2>
+  <a routerLink="/" class="single-planet__return-button">Return</a>
+  <div class="row mt-2">
+    <div class="col-md-6 col-sm-12 single-planet__sphere-container">
+      <img src="../../assets/img/sphere.gif" alt="" class="single-planet__sphere">
+    </div>
+    <div class="col-md-6 col-sm-12 d-flex flex-column align-items-md-start align-items-sm-center pl-4">
+
+      <p>climate: {{planet.climate}}</p>
+
+      <ng-component *ngIf="planet.diameter == '0' || planet.diameter == 'unknown'; then diameterUnknown; else diameter"></ng-component>
+      <ng-template #diameter>
+          <p>diameter: {{planet.diameter | number }} km</p>
+      </ng-template>
+      <ng-template #diameterUnknown>
+          <p>diameter: unknown</p>
+      </ng-template>
+
+      <p>gravity: {{planet.gravity}}</p>
+
+      <ng-component *ngIf="planet.orbital_period == '0' || planet.orbital_period == 'unknown'; then orbPeriodUnknown; else orbPeriod"></ng-component>
+      <ng-template #orbPeriod>
+          <p>orbital period: {{planet.orbital_period}} days</p>
+      </ng-template>
+      <ng-template #orbPeriodUnknown>
+          <p>orbital period: unknown</p>
+      </ng-template>
+
+      <ng-component *ngIf="planet.population == '0' || planet.population == 'unknown'; then populationUnknown; else population"></ng-component>
+      <ng-template #population>
+          <p>population: {{planet.population | number }}</p>
+      </ng-template>
+      <ng-template #populationUnknown>
+          <p>population: unknown</p>
+      </ng-template>
+
+      <ng-component *ngIf="planet.rotation_period == '0' || planet.rotation_period == 'unknown'; then rotPeriodUnknown; else rotPeriod"></ng-component>
+      <ng-template #rotPeriod>
+          <p>rotation period: {{planet.rotation_period}} hours</p>
+      </ng-template>
+      <ng-template #rotPeriodUnknown>
+          <p>rotation period: unknown</p>
+      </ng-template>
+
+      <p>surface water: {{planet.surface_water}}<ng-component *ngIf="planet.surface_water != 'unknown'; then percent"></ng-component> </p>
+      <ng-template #percent>
+        %
+      </ng-template>
+
+      <p>terrain: {{planet.terrain}}</p>
+    </div>
+  </div>
+
+
+
+</div>
+<app-loader [hidden]="showLoader"></app-loader>

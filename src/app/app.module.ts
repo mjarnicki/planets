@@ -9,12 +9,11 @@ import { FilterComponent } from './filter/filter.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationLengthComponent } from './pagination-length/pagination-length.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PlanetsComponent } from './planets/planets.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DataBaseService } from './data-base.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PlanetListComponent } from './planet-list/planet-list.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SinglePlanetComponent } from './single-planet/single-planet.component';
 
 
 @NgModule({
@@ -23,10 +22,10 @@ import { LoaderComponent } from './loader/loader.component';
     FilterComponent,
     PaginationComponent,
     PaginationLengthComponent,
-    PlanetsComponent,
     PageNotFoundComponent,
     PlanetListComponent,
     LoaderComponent,
+    SinglePlanetComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +36,6 @@ import { LoaderComponent } from './loader/loader.component';
   ],
   providers: [
     HttpService,
-    DataBaseService
   ],
   bootstrap: [AppComponent]
 })
