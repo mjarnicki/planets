@@ -51,8 +51,8 @@
 }
 .col-2{
   column-count: 2;
-  max-width: 375px;
   padding: 0;
+  max-width: 375px;
   text-align: center;
 }
 .col-5{
@@ -61,8 +61,11 @@
   padding: 0;
   text-align: center;
   @media (max-width: 580px){
-    column-count: 3;
-    max-width: 100%;
-    padding: 0 15px;
-   }
+    column-count: 2;
+    max-width: 375px;
+  }
+  @media (max-width: 768px) and (min-width: 581px){
+    column-count: 4;
+    max-width: 560px;
+    }
 }

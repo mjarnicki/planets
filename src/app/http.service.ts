@@ -16,7 +16,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getPlanetByName(name: string) {
-    if (this.planetList.length > 0){
+    if (this.planetList.length > 0) {
       return this.planetList.find(e => e.name.toLowerCase().replace(' ', '-') === name);
     } else {
     }
@@ -24,18 +24,26 @@ export class HttpService {
 
   async sendAllPosts(): Promise<any> {
     const index = await this.getNumberOfRequests();
-    const planetList = await this.concatPosts(index);
-    this.filteredPlanetList = planetList;
-    console.log(this.filteredPlanetList);
-    return planetList;
+    const rawData = await this.concatPosts(index);
+    const parsedData = await this.parseToSingleArray(rawData);
+    this.filteredPlanetList = parsedData;
+    this.planetList = parsedData;
   }
 
-  async concatPosts(index) {
-    for (let i = 1; i <= index; i++) {
-      const planet = await this.getPostArray(i);
-      this.planetList = this.planetList.concat(planet);
+  parseToSingleArray(rawData) {
+    const parsedData = [];
+    for (const iterator of rawData) {
+      parsedData.push(...iterator);
     }
-    return this.planetList;
+    return parsedData;
+  }
+
+  concatPosts(index) {
+    const arrayOfRequests = [];
+    for (let i = 1; i <= index; i++) {
+      arrayOfRequests.push(this.getPostArray(i));
+    }
+    return Promise.all(arrayOfRequests);
   }
 
   getPost(): Observable<any> {
