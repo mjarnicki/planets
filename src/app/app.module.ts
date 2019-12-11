@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PlanetListComponent } from './planet-list/planet-list.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SinglePlanetComponent } from './single-planet/single-planet.component';
+import { PopulationPipe } from './population.pipe';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SinglePlanetComponent } from './single-planet/single-planet.component';
     PlanetListComponent,
     LoaderComponent,
     SinglePlanetComponent,
+    PopulationPipe,
   ],
   imports: [
     BrowserModule,

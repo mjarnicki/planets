@@ -29,7 +29,7 @@
 
       <ng-component *ngIf="planet.population == '0' || planet.population == 'unknown'; then populationUnknown; else population"></ng-component>
       <ng-template #population>
-          <p>population: {{planet.population | number }}</p>
+          <p>population: {{planet.population | population}}</p>
       </ng-template>
       <ng-template #populationUnknown>
           <p>population: unknown</p>
