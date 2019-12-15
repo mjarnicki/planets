@@ -13,14 +13,21 @@ export class SinglePlanetComponent implements OnInit {
   name: string;
   showLoader = false;
   showContent = true;
+  show404 = true;
+  error404message = 'Planet not found...';
 
   constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
 
   showPlanetDetails() {
     this.route.paramMap.subscribe((param: Params) => {
-      this.planet = this.planetsList.getPlanetByName(param.get('name'));
-      this.showLoader = true;
-      this.showContent = false;
+      if (this.planetsList.getPlanetByName(param.get('name')) === undefined) {
+        this.showLoader = true;
+        this.show404 = false;
+      } else {
+        this.planet = this.planetsList.getPlanetByName(param.get('name'));
+        this.showLoader = true;
+        this.showContent = false;
+      }
     });
   }
 

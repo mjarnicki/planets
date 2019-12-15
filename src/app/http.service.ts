@@ -18,7 +18,6 @@ export class HttpService {
   getPlanetByName(name: string) {
     if (this.planetList.length > 0) {
       return this.planetList.find(e => e.name.toLowerCase().replace(' ', '-') === name);
-    } else {
     }
   }
 

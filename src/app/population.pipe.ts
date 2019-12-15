@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PopulationPipe implements PipeTransform {
 
-  transform(value: string, ...args: any[]): any {
+  transform(value: string): string {
     if ( value.length > 6) {
       return value.slice(-value.length, -6).replace(/(.)(?=(.{3})+$)/g, '$1,') + ' milion';
     }
