@@ -58,7 +58,6 @@ export class PlanetListComponent implements OnInit {
     this.planetCount = this.httpService.planetCount;
     this.showLoader = true;
     this.showContent = false;
-    console.log(this.planetList);
   }
 
   ngOnInit(): void {

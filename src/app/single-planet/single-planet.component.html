@@ -1,4 +1,4 @@
-<div class="container single-planet__container" [hidden] = "showContent" *ngIf="planet">
+<div class="container single-planet__container" [hidden] = "hideContent" *ngIf="planet">
   <h2 class="single-planet__name">{{planet.name}}</h2>
   <a routerLink="/" class="single-planet__return-button">Return</a>
   <div class="row mt-2">
@@ -55,5 +55,5 @@
 
 
 </div>
-<app-loader [hidden]="showLoader"></app-loader>
-<app-page-not-found [hidden]="show404" [errorText]="error404message"></app-page-not-found>
+<app-loader [hidden]="hideLoader"></app-loader>
+<app-page-not-found [hidden]="hide404" [errorText]="error404message"></app-page-not-found>

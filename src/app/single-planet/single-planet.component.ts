@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Params } from '@angular/router';
+// import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-single-planet',
@@ -11,9 +12,9 @@ export class SinglePlanetComponent implements OnInit {
 
   planet: SinglePlanet;
   name: string;
-  showLoader = false;
-  showContent = true;
-  show404 = true;
+  hideLoader = false;
+  hideContent = true;
+  hide404 = true;
   error404message = 'Planet not found...';
 
   constructor(private planetsList: HttpService, private route: ActivatedRoute) { }
@@ -21,13 +22,18 @@ export class SinglePlanetComponent implements OnInit {
   showPlanetDetails() {
     this.route.paramMap.subscribe((param: Params) => {
       if (this.planetsList.getPlanetByName(param.get('name')) === undefined) {
-        this.showLoader = true;
-        this.show404 = false;
+        this.hideLoader = true;
+        this.hide404 = false;
       } else {
         this.planet = this.planetsList.getPlanetByName(param.get('name'));
-        this.showLoader = true;
-        this.showContent = false;
+        this.hideLoader = true;
+        this.hideContent = false;
       }
+    this.route.queryParamMap.subscribe((query: Params) => {
+      console.log(query);
+      console.log(query.get('offset'));
+      console.log(query.get('pageSize'));
+    })
     });
   }
 
