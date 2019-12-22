@@ -1,4 +1,4 @@
 Change list size:
-<select (change)="checkValue($event.target.value)">
-  <option *ngFor="let item of paginationList" value="{{item}}">{{item}}</option>
-</select>
+  <select  (change)="checkValue($event.target.value)" [(ngModel)]='indexOfSelectedValue'>
+    <option *ngFor="let item of paginationList" [value]="item" >{{item}}</option>
+  </select>

@@ -24,7 +24,7 @@ export class PaginationComponent {
   }
 
   @Input() set resetPageNumber(resetPageNumber: number) {
-    this.currentPage = resetPageNumber;
+    this.currentPage = resetPageNumber - 1 + 1;
   }
 
   @Output() goToPage: EventEmitter<number> = new EventEmitter<number>();

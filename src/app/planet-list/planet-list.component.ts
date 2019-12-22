@@ -30,12 +30,18 @@ export class PlanetListComponent implements OnInit {
 
   paginationValue(event: number) {
     this.currentPageNumber = event;
+    this.httpService.currentPage = event;
   }
 
   setPaginationLength(event) {
+    if (this.httpService.currentPage === undefined) {
+      this.currentPageNumber = 1;
+    }
+    else{
+      this.currentPageNumber = this.httpService.currentPage; 
+    }
+    
     this.itemsCount = event;
-    this.currentPageNumber = 1;
-    console.log(event);
     this.changeColumnNumber(event);
   }
 
@@ -58,8 +64,12 @@ export class PlanetListComponent implements OnInit {
     this.planetCount = this.httpService.planetCount;
     this.showLoader = true;
     this.showContent = false;
+    if(this.httpService.searchString !== undefined){
+      this.stringToFilter = this.httpService.searchString
+      this.filterListOfPlanets(this.httpService.searchString)
+    }
   }
-
+  
   ngOnInit(): void {
     if (this.httpService.planetList.length === 0) {
       this.httpService.sendAllPosts().then(() => {

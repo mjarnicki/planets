@@ -11,6 +11,9 @@ export class HttpService {
   planetList = [];
   filteredPlanetList = [];
   planetCount = 1;
+  currentPage: number;
+  listSize: number;
+  searchString: '';
   planetsListDisplay = new Subject<boolean>();
 
   constructor(private http: HttpClient) { }

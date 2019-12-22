@@ -30,9 +30,9 @@ export class SinglePlanetComponent implements OnInit {
         this.hideContent = false;
       }
     this.route.queryParamMap.subscribe((query: Params) => {
-      console.log(query);
-      console.log(query.get('offset'));
-      console.log(query.get('pageSize'));
+      this.planetsList.currentPage = query.get('offset');
+      this.planetsList.listSize = query.get('pageSize');
+      this.planetsList.searchString = query.get('q');
     })
     });
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-pagination-length',
@@ -7,17 +8,26 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PaginationLengthComponent implements OnInit {
 
-  constructor() { }
-
+  constructor( private httpService: HttpService) {
+  }
   paginationList: Array<number> = [5, 10, 25, 100];
+  indexOfSelectedValue: number;
 
   @Output() currentPagination = new EventEmitter();
 
   ngOnInit() {
-    this.currentPagination.emit(this.paginationList[0]);
+    if (this.httpService.listSize == undefined) {
+      this.indexOfSelectedValue = this.paginationList[0];
+      this.currentPagination.emit(this.paginationList[0]);
+    }
+    else{
+      this.currentPagination.emit(this.httpService.listSize);
+      this.indexOfSelectedValue = this.httpService.listSize;
+    }
   }
 
   checkValue(event) {
+  
     this.currentPagination.emit(event);
   }
 

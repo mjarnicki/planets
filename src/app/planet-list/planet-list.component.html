@@ -2,7 +2,7 @@
   <div class="planet-list__filter">
     <app-filter (setValue)="filterValue($event)" class="planet-list__single-filter"></app-filter>
     <app-pagination-length (currentPagination)="setPaginationLength($event)" class="planet-list__single-filter"></app-pagination-length>
-    <ng-container  *ngIf="filteredPlanetList.length > 1; then morePlanets; else onePlanet">
+    <ng-container  *ngIf="filteredPlanetList.length == planetList.length; then fullList; else filteredList">
     </ng-container>
   </div>
 </nav>
@@ -11,7 +11,7 @@
     <ul class='col-1' [className]='columnNumber'>
       <ng-container *ngFor="let planet of filteredPlanetList; let index = index">
         <li class="planet-list__single-planet" *ngIf="(index + 1 > (currentPageNumber - 1) * (itemsCount) && index + 1 <= (currentPageNumber) * (itemsCount))">
-          <a [routerLink]="[planet.name.replace(' ', '-') | lowercase]" [queryParams]="{ offset: (currentPageNumber), pageSize: (itemsCount)}" queryParamsHandling="merge">
+          <a [routerLink]="[planet.name.replace(' ', '-') | lowercase]" [queryParams]="{ offset: (currentPageNumber), pageSize: (itemsCount), q: (stringToFilter)}" queryParamsHandling="merge">
             {{planet.name}}
           </a>
         </li>
@@ -31,6 +31,18 @@
 </div>
 <app-loader [hidden]="showLoader"></app-loader>
 
+
+<ng-template #fullList>
+  <p [hidden]="showContent" class="m-3">
+    {{filteredPlanetList.length}} planets on the list.
+  </p>
+</ng-template>
+
+<ng-template #filteredList>
+  <ng-container  *ngIf="filteredPlanetList.length > 1; then morePlanets; else onePlanet">
+  </ng-container>
+</ng-template>
+
 <ng-template #onePlanet>
   <p [hidden]="showContent" class="m-3">
     {{filteredPlanetList.length}} planet mach search criteria.
@@ -42,4 +54,3 @@
     {{filteredPlanetList.length}} planets mach search criteria.
   </p>
 </ng-template>
-
